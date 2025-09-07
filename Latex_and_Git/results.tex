@@ -1,56 +1,41 @@
 \section{Results}
-Here is where you will describe your significant results. Typically, you will place a number of figures in the results section to illustrate your findings. For example, I tried to use TiKZ to create a simple illustration of the factor structure of general intelligence, but I don't think it's very good (see Figure~\ref{fig:TikZmodel}).
 
-\begin{figure}[ht!]
-\centering
-\begin{tikzpicture}[scale=.5,transform shape,auto,node distance=.9cm,
-latent/.style={circle,draw,very thick,inner sep=0pt,minimum size=25mm,align=center},
-manifest/.style={rectangle,draw,very thick,inner sep=0pt,minimum width=30mm,minimum height=10mm},
-paths/.style={->, ultra thick, >=stealth'}]
-\node [manifest] (SI) at (0,0) {Similarities};
-\node [manifest] (VO) [below=of SI] {Vocabulary};
-\node [manifest] (CO) [below=of VO] {Comprehension};
-\node [manifest] (IN) [below=of CO] {Information};
-\node [manifest] (WR) [below=of IN] {Word Reasoning};
-\node [manifest] (BD) [below=of WR] {Block Design};
-\node [manifest] (PS) [below=of BD] {Picture Concepts};
-\node [latent] (g) [left=2.5cm of IN] {\emph{g}};
-\node [latent] (Gc) [right=4.5cm of CO] {Verbal\\ Comprehension};
-\node [latent] (Gv) [right=4.5cm of BD] {Visual\\ Spatial};
-\foreach \all in {SI, VO, CO, IN, WR, BD, PS}
-{
-\draw [paths] (g.east) to node { } (\all.west);
-}
-\foreach \vc in {SI, VO, CO, IN, WR}
-\draw [paths] (Gc.west) to node {} (\vc.east);
-\foreach \vs in {BD, PS}
-\draw [paths] (Gv.west) to node {} (\vs.east);
-\draw [paths, <->] (Gc) edge[bend left] node [left] {} (Gv);
-\end{tikzpicture}
-\caption{\label{fig:TikZmodel} Here is a sample of a TikZ model.}
-\end{figure}
+A repeated measures 2 x 3 between-within ANOVA was conducted to assess changes in FAD behaviors over time and determine if the PNF for FAD condition demonstrates the most significant effects (see Table~\ref{tab:study}). Additionally, a mediation analysis was be conducted to examine whether FAD norms mediate the relationship between intervention type and FAD behaviors.
 
-In other cases, you might have an image file you want to bring into your document.  That is pretty easy to do as well as you can see in Figure \ref{fig:gearhead}.
-
-\begin{figure}[h!] 
-\centering
-\includegraphics[width=0.3\textwidth]{frog.jpeg}
-\caption{\label{fig:gearhead}This is a another figure caption.}
-\end{figure}
-
-Sometimes You may also want to display some tabular data in order to illustrate patterns in your data. Fortunately, You can do this right in \LaTeX.
+An a priori power analysis was conducted to determine the required sample size to detect a small effect size for a repeated-measures ANOVA (within-between interaction) using G*Power 3.1. It was decided to use a small effect size (f = 0.10) to be conservative, as no previous PNF interventions for FAD could be used as a reference. Past research indicated a small-moderate effect size of PNF interventions for alcohol use and problems (Dotson et al., 2015; Young \& Neighbors, 2019). The analysis was based on an alpha level of 0.05 and a desired power of 0.80. There were two groups (i.e., PNF-FAD, and control) and three measurement points (i.e., baseline, two-week and four-week follow-ups). The analysis indicated a minimum sample size of 164 participants per condition with these parameters to detect a statistically significant effect. Additionally, one research article suggests that a sample size of at least 562 participants is required to detect small effects in a partial mediation model with 0.80 power (Fritz \& Mackinnon, 2007). The goal was to recruit 650 participants to account for potential dropout rates.
 
 \begin{table}[h!]
 \centering
-\caption{\label{tab:RTmeans}Reaction times over training in the experimental and control groups.}
+\caption{\label{tab:study}Engagement in FAD behaviors in the experimental and control groups. 0 = Never, 6 = Always.}
 \begin{tabular}{l l c c c}
  \toprule
-                          &              & \multicolumn{3}{c}{Week}\\
+                          &              & \multicolumn{3}{c}{Study}\\
   \cmidrule{3-5}
-                          &              & {One}           & {Two}           & {Three}\\
+                          &              & {Baseline}           & {Time 2}           & {Time 3}\\
   \cmidrule{3-5}
-  \multirow{ 2}{*}{Group} & Experimental &     1008.435    &      986.76     &      859.1     \\
-                          & Control      &     996.23      &      901.67     &      1002.23   \\
+  \multirow{ 2}{*}{Group} & Experimental &     1.25    &      1.06     &      1.01     \\
+                          & Control      &     1.23      &      1.67     &      1.23   \\
   \bottomrule
  \end{tabular}
 \end{table}
+
+
+\begin{figure}[ht!]
+\centering
+\begin{tikzpicture}[
+  mynode/.style={draw, align=center, minimum width=2.5cm, inner sep=6pt}
+]
+
+% Nodes
+\node[mynode] (M) {FAD Norms};
+\node[mynode, below left=of M] (A) {Intervention};
+\node[mynode, below right=of M] (B) {FAD Behaviors};
+
+% Paths (only indirect mediation)
+\draw[-latex, thick] (A.north) -- (M.south west);
+\draw[-latex, thick] (M.south east) -- (B.north);
+\draw[-latex, thick] (A.north) -- (B.north);
+
+\end{tikzpicture}
+\caption{\label{fig:TikZmodel}Mediation model of intervention effects on changes in FAD behaviors through changes in perceived FAD norms.}
+\end{figure}

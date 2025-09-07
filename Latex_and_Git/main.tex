@@ -1,49 +1,39 @@
 \documentclass[a4paper,man,natbib,floatsintext,12pt]{apa7}
 
-\usepackage[english]{babel} %character and hyphenation rules specific to the language you choose
-%\usepackage[utf8x]{inputenc}
-\usepackage{graphicx}
-\usepackage{color}
+
+% ----- PACKAGES (load all here) ----- %
+\usepackage{graphicx}  % Required for inserting images
+\usepackage{xcolor}
 \usepackage{tikz}
+\usetikzlibrary{shapes,decorations,arrows,calc,arrows.meta,fit,positioning}
 \usepackage{amsmath}
 \usepackage{blindtext}
 \usepackage{tabularx} %great for APA-style Tables
 \usepackage{siunitx} % Required for good table alignmen
 \sisetup{
-  round-mode          = places, % Rounds numbers
-  round-precision     = 2, % to 2 places
+  round-mode = places, % Rounds numbers
+  round-precision = 2, % to 2 places
 }
 \usepackage{multirow}
 \usepackage{booktabs}
 \usepackage{wrapfig}
-\usetikzlibrary{shapes,decorations,arrows,calc,arrows.meta,fit,positioning}
-\tikzset{
-    -Latex,auto,node distance =1 cm and 1 cm,semithick,
-    latent/.style ={ellipse, draw, minimum width = 0.7 cm},
-    observed/.style ={rectangle, draw},
-    bidirected/.style={Latex-Latex,dashed},
-    el/.style = {inner sep=2pt, align=left, sloped}
-}
-\newcommand{\sigFtest}[4]{\textit{F}(#1,#2) = #3, \textit{p}$<$#4}
-\newcommand{\nonsigFtest}[3]{\textit{F}(#1,#2) = #3, \textit{p}$>$.05}
 
-
-\title{My First Manuscript in \LaTeX  }
-\shorttitle{This is the short title}
-\author{Paul D. Kieffaber}
-\affiliation{College of William \& Mary}
-\journal{The Best Psychology Journal EVER!}
-\abstract{\blindtext}
-\keywords{APA style, demonstration}
-\authornote{I would like to thank my dogs for sitting quietly while I worked on this.}
+% ------ METADATA (after packages, before document) ------ %
+\title{Personalized Normative Feedback Intervention for Food and Alcohol Disturbance Among College Students}
+\shorttitle{PNF for FAD}
+\author{Javiera A. Hernandez Puelma}
+\affiliation{William \& Mary}
+\authornote{I would like to thank my advisor.}
 \leftheader{Alternate page header in man mode}
+\journal{The Best Psychology Journal EVER}
+\keywords{Alcohol, Food and Alcohol Disturbance, Norms, College Students, Mediation}
+\abstract{This is the abstract about FAD.}
 
-%-------------- END PREAMBLE  -------------------
-
+%----------- END PREAMBLE  --------------%
 
 \begin{document}
 
-\maketitle  %Insert my APA style title page
+\maketitle %Insert my APA style title page
 
 \input{intro.tex}
 
@@ -53,8 +43,6 @@
 
 \input{discussion.tex}
 
-
 \bibliography{references.bib}
 
 \end{document}
-https://www.overleaf.com/project/64ef8e5b3faa92d4248ddcf9
